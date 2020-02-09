@@ -1,0 +1,27 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/zx.hdl
+
+
+CHIP Zr {
+    IN in[16];  // 16-bit input and 1-bit input
+    OUT out;     // Out
+
+    PARTS:
+    And(a=in[0], b=in[1], out=and1);
+    And(a=in[2], b=and1, out=and2);
+    And(a=in[3], b=and2, out=and3);
+    And(a=in[4], b=and3, out=and4);
+    And(a=in[5], b=and4, out=and5);
+    And(a=in[6], b=and5, out=and6);
+    And(a=in[7], b=and6, out=and7);
+    And(a=in[8], b=and7, out=and8);
+    And(a=in[9], b=and8, out=and9);
+    And(a=in[10], b=and9, out=and10);
+    And(a=in[11], b=and10, out=and11);
+    And(a=in[12], b=and11, out=and12);
+    And(a=in[13], b=and12, out=and13);
+    And(a=in[14], b=and13, out=and14);
+    And(a=in[15], b=and14, out=out);
+}

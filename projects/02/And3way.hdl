@@ -1,0 +1,18 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/2or3way.hdl
+
+/**
+ * Only outputs 1 if ALL THREE inputs are 1
+ */
+
+CHIP And3way {
+    IN a, b, c;  // 1-bit inputs
+    OUT out;     // Out
+
+    PARTS:
+    // Put you code here:
+    And(a=a, b=b, out=and1);
+    And(a=and1, b=c, out=out); 
+}

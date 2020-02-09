@@ -1,0 +1,21 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/2or3way.hdl
+
+/**
+ * Only outputs 1 if ONLY ONE of the inputs is 1
+ */
+
+CHIP Xor3way {
+    IN a, b, c;  // 1-bit inputs
+    OUT out;     // Out
+
+    PARTS:
+    // Put you code here:
+    Xor(a=a, b=b, out=xor1);
+    Xor(a=xor1, b=c, out=xor2);
+    And3way(a=a, b=b, c=c, out=and1);
+    Not(in=and1, out=not1);
+    And(a=xor2, b=not1, out=out);
+}

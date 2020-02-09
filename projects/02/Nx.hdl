@@ -1,0 +1,17 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/Nx.hdl
+
+/**
+ * Only outputs 1 if ONLY A is 1 AND B is 0
+ */
+
+CHIP Nx {
+    IN a[16], b;  // 16-bit inputs
+    OUT out[16];     // Out
+
+    PARTS:
+    Not16(in=a, out=not1);
+    Mux16(a=a, b=not1, sel=b, out=out);
+}
