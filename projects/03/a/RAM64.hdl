@@ -19,17 +19,7 @@ CHIP RAM64 {
     Not(in=address[5], out=not1);
     Not(in=address[4], out=not2);
     Not(in=address[3], out=not3);
-    Not(in=address[2], out=not4);
-    Not(in=address[1], out=not5);
-    Not(in=address[0], out=not6);
-
-    And3way(a=address[5], b=address[4], c=not3, out=seventhBit);
-    And3way(a=not1, b=address[4], c=address[3], out=sixthBit);
     
-    And3way(a=not1, b=address[4], c=not3, out=fifthBit);
-
-    And3way(a=not1, b=not2, c=address[3], out=fourthLastBit);
-
     And3way(a=not1, b=not2, c=not3, out=firstRAM);
     And3way(a=not1, b=not2, c=address[3], out=secondRAM);
     And3way(a=not1, b=address[4], c=not3, out=thirdRAM);
@@ -57,11 +47,5 @@ CHIP RAM64 {
     RAM8(in=in, load=loadSeventhRAM, address=address[0..2], out=out7);
     RAM8(in=in, load=loadEigthRAM, address=address[0..2], out=out8);
 
-    Mux16(a=out1, b=out2, sel=secondRAM, out=mux1);
-    Mux16(a=mux1, b=out3, sel=thirdRAM, out=mux2);
-    Mux16(a=mux2, b=out4, sel=fourthRAM, out=mux3);
-    Mux16(a=mux3, b=out5, sel=fifthRAM, out=mux4);
-    Mux16(a=mux4, b=out6, sel=sixthRAM, out=mux5);
-    Mux16(a=mux5, b=out7, sel=seventhRAM, out=mux6);
-    Mux16(a=mux6, b=out8, sel=eigthRAM, out=out);
+    Mux8Way16(a=out1, b=out2, c=out3, d=out4, e=out5, f=out6, g=out7, h=out8, sel=address[3..5], out=out);
 }

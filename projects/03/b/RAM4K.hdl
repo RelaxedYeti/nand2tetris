@@ -16,4 +16,36 @@ CHIP RAM4K {
 
     PARTS:
     // Put your code here:
+    Not(in=address[11], out=not1);
+    Not(in=address[10], out=not2);
+    Not(in=address[9], out=not3);
+    
+    And3way(a=not1, b=not2, c=not3, out=firstRAM);
+    And3way(a=not1, b=not2, c=address[9], out=secondRAM);
+    And3way(a=not1, b=address[10], c=not3, out=thirdRAM);
+    And3way(a=not1, b=address[10], c=address[9], out=fourthRAM);
+    And3way(a=address[11], b=not2, c=not3, out=fifthRAM);
+    And3way(a=address[11], b=not2, c=address[9], out=sixthRAM);
+    And3way(a=address[11], b=address[10], c=not3, out=seventhRAM);
+    And3way(a=address[11], b=address[10], c=address[9], out=eigthRAM);
+
+    And(a=load, b=firstRAM, out=loadFirstRAM);
+    And(a=load, b=secondRAM, out=loadSecondRAM);
+    And(a=load, b=thirdRAM, out=loadThirdRAM);
+    And(a=load, b=fourthRAM, out=loadFourthRAM);
+    And(a=load, b=fifthRAM, out=loadFifthRAM);
+    And(a=load, b=sixthRAM, out=loadSixthRAM);
+    And(a=load, b=seventhRAM, out=loadSeventhRAM);
+    And(a=load, b=eigthRAM, out=loadEigthRAM);
+
+    RAM512(in=in, load=loadFirstRAM, address=address[0..8], out=out1);
+    RAM512(in=in, load=loadSecondRAM, address=address[0..8], out=out2);
+    RAM512(in=in, load=loadThirdRAM, address=address[0..8], out=out3);
+    RAM512(in=in, load=loadFourthRAM, address=address[0..8], out=out4);
+    RAM512(in=in, load=loadFifthRAM, address=address[0..8], out=out5);
+    RAM512(in=in, load=loadSixthRAM, address=address[0..8], out=out6);
+    RAM512(in=in, load=loadSeventhRAM, address=address[0..8], out=out7);
+    RAM512(in=in, load=loadEigthRAM, address=address[0..8], out=out8);
+
+    Mux8Way16(a=out1, b=out2, c=out3, d=out4, e=out5, f=out6, g=out7, h=out8, sel=address[9..11], out=out);
 }
